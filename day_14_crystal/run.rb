@@ -1,0 +1,1 @@
+puts File.open("in.txt"){|f,w=100,h=102,q=[0,0,0,0],b=nil|(0..).each{|i,s={}|(b ? b:(b=f.map{|l|l.scan(/-?\d+/).map(&:to_i) })).each{|p|s[(p[0]=(p[0]+p[2])%(w+1))*128+(p[1]=(p[1]+p[3])%(h+1))]=(q[(p[0]<w/2?0:1)+(p[1]<h/2?0:2)]+=1if p[0]!=w/2&&p[1]!=h/2if i==99)||1}&&(break i+1if s.length==b.length)||(puts(q.reduce(1){|j,k|j*k})if i==99)}}

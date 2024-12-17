@@ -1,0 +1,1 @@
+puts File.open("in.txt"){|f|(_,n=f.map{|l|l.split.map(&:to_i)}.transpose.map(&:sort))[0].each_with_index.sum{|a,b|ARGV.index("2")?(n=n.is_a?(Hash)?n:n.tally).fetch(a,0)*a:(n[b]-a).abs}}

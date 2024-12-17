@@ -1,0 +1,1 @@
+puts [0,1e13].map{|x| (defined?(F)?F: F=File.read("in.txt").split(/\n\n|\r\n\r\n/).map{|n|n.scan(/[0-9]+/)}).map{|l|l.each_with_index.map{|j,i|i>3?j.to_i+x:j.to_i}}.sum{|m|(a=(m[5]*(o=(c=m[0].lcm(m[1]))/m[1])-m[4]*(e=c/m[0]))/(m[3]*o-m[2]*e).to_f)== a.to_i&& (b=(m[4]-a*m[2])/m[0])== b.to_i ? (a+b*3):0}.to_i}
