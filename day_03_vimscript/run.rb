@@ -1,1 +1,1 @@
-puts File.open("in.txt") { |file, p2 = ARGV.include?("2"), doo=true| file.map { |line| line.scan(/mul\([0-9]+,[0-9]+\)|don't\(\)|do\(\)/).map { |e| e.start_with?("do") ? e : e.scan(/[0-9]+/).map(&:to_i) } }.sum { |e| e.sum { |el| el == "don't()" ? ((doo = false || !p2) or 0 and 0) : (el == "do()" ? ((doo = true || !p2) or 0 and 0) : (doo) ? (el[0] * el[1]) : 0 ) } } }
+puts File.read("in.txt").scan(/mul\(\d+,\d+\)|don't\(\)|do\(\)/).reduce([d=0,0]){|(a,b),s|[a+(c=s["m"]?s.scan(/\d+/).map(&:to_i).reduce(&:*):(d=!s["'"])?0:0),d ? b+c:b]}
