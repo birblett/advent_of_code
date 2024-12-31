@@ -14,17 +14,3 @@ puts File.open("in.txt") { |file, tscore = 0, paths = 0, len = nil, trailheads =
     }) while (comp = q.pop)
   } && [tscore, paths]
 }
-
-puts File.open("in.txt") { |f, dim = ((f = f.map {_1.strip.chars.map { |s| s.ord - 48 } }.reduce(&:+)).length ** 0.5).to_i|
-  tmat = (mat = f.each_with_index.reduce({}) { |sparse, (num, i), j|
-    [[(y = i / dim) + 1, (x = i % dim)], [y - 1, x], [y, x + 1], [y, x - 1]].each {
-      (sparse[i] = sparse.fetch(i, {}))[j] = 1 if (0...dim).include?(_1) && (0...dim).include?(_2) && f[j = _1 * dim + _2] == num + 1
-    } && sparse
-  }).reduce({}) { |hash, (k, v)| v.each { (hash[_1] = hash.fetch(_1, {}))[k] = _2 } && hash }
-  (8).times {
-    mat = mat.reduce({}) { |out, (r, v)| tmat.each { |c, v2, s = v2.sum { |k, v3| v[k] ? v3 * v[k] : 0 }|
-      s > 0 ? (out[r] = out.fetch(r, {}))[c] = s : 0
-    } && out }
-  }
-  [mat.sum { _2.size }, mat.sum { _2.values.sum }]
-}
