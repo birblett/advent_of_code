@@ -17,7 +17,7 @@ eval("def program(a, b, c, d=false)\n" + instr.reduce("") { |t, sh| t + "#{sh}\n
 a, b, c = (str[0].scan(/\d+/) + str[1].scan(/\d+/) + str[2].scan(/\d+/)).map(&:to_i)
 a, _, _ = program(a, b, c, true) while a > 0 or puts "\b "
 ((puts a; break) if p < 0
-(0..7).each do |digit|
+(0..7).reverse_each do |digit|
   _, b, _ = program((e = (a << 3) + digit), b, c)
   stack.push([e, p - 1]) if (b & 7 == st[p])
 end) while (a, p = stack.pop)
