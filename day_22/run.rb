@@ -1,8 +1,8 @@
-puts (seq = {}) && File.read("in.txt").split(/\n/).map(&:to_i).sum { |cu, h = {}, last4 = 1048575|
+puts (a = Array.new(1048576, max = 0)) && (seen = Array.new(1048576, (idx = 1) - 1)) && File.read("in.txt").split(/\n/).map(&:to_i).sum { |cu, last4 = 1048575|
   2000.times {
-    i = ((i = ((i = (cu << 6 ^ cu) & 16777215) >> 5 ^ i) & 16777215) << 11 ^ i) & 16777215
+    i = (((i = (i = (cu & 262143) << 6 ^ cu) >> 5 ^ i) & 8191) << 11 ^ i)
     key = (key = (price = i % 10) - cu % 10) < 0 ? 16 | key.abs : key
-    last4 = ((last4 << 5) + key) & 1048575
-    cu = _1 < 3 || h[last4] ? i : (seq[last4] = seq.fetch(last4, 0) + price) && (h[last4] = i)
-  } && cu
-}, seq.max_by { _2 }[1]
+    last4 = (((last4 & 32767) << 5) + key)
+    cu = _1 < 3 || seen[last4] == idx ? i : (max = (a[last4] += price) > max ? a[last4] : max) && (seen[last4] = idx) && i
+  } && (idx += 1) && cu
+}, max
