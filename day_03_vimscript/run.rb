@@ -1,1 +1,1 @@
-puts File.read("in.txt").scan(/mul\(\d+,\d+\)|don't\(\)|do\(\)/).reduce([d=0,0]){|(a,b),s|[a+(c=s["m"]?s.scan(/\d+/).map(&:to_i).reduce(&:*):(d=!s["'"])?0:0),d ? b+c:b]}
+p [//,/don't\(\).*?do\(\)/m].map{"#{A||=STDIN.read}do()#{def mul(a,b)=a*b}".gsub(_1,"").scan(/mul\(\d+,\d+\)/).sum{|s|eval s}}
