@@ -2,7 +2,7 @@
 ct=$(cat in.txt) && ct_s="${ct//$'\n'/'|'}" && regs=() && instr=()
 for tok in $(echo "${ct_s%%||*}" | grep -Po "[0-9]+"); do regs+=("$tok"); done
 for tok in $(echo "${ct_s#*||*}" | grep -Po "[0-9]"); do instr+=("$tok"); done
-len=${#instr[@]}
+((i = len = ${#instr[@]}))
 prog () {
   out=() && idx=0
   while [[ idx -lt len ]]; do
@@ -27,7 +27,6 @@ prog () {
 }
 prog && t="${out[*]}" && regs[shift=final=0]=1
 while [[ ${#out[@]} -lt len ]]; do (( regs[0] = 1 << (shift += 3) )) && prog; done
-(( i = len ))
 while [[ $(( i -= 1 )) -ge $((curr = 0)) ]]; do
   (( inc = 1 << shift ))
   while [[ "${out[*]:i:len}" != "${instr[*]:i:len}" ]]; do regs=($(( final + (curr += inc) )) 0 0) && prog; done
