@@ -1,1 +1,1 @@
-p [//,/don't\(\).*?do\(\)/m].map{"#{A||=STDIN.read}do()#{def mul(a,b)=a*b}".gsub(_1,"").scan(/mul\(\d+,\d+\)/).sum{|s|eval s}}
+p [//,/don't.\).*?do.\)/m].map{"#{A||=STDIN.read}do()".gsub(_1,"").scan(/mul.(\d+),(\d+)\)/).sum{|(a,b)|eval(a+"*"+b)}}
