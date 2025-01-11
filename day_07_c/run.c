@@ -13,7 +13,7 @@ double wallclock() {
     return now.tv_sec + now.tv_nsec * 1e-9;
 }
 
-int push(long* stack, long add, long ind, long pure, int head) {
+inline int push(long* stack, long add, long ind, long pure, int head) {
     int idx = (head + 1) * 3;
     stack[idx] = add;
     stack[idx + 1] = ind;
@@ -53,8 +53,8 @@ double test(){
                 if (mul < target) head = push(stack, mul, ind + 1, pure, head);
                 if (cat < target) head = push(stack, cat, ind + 1, 0, head);
             }
-            if (!found1 && pure && (add == target || mul == target)) found1 = (sum1 += target);
-            if (!found2 && (add == target || mul == target || cat == target)) found2 = (sum2 += target);
+            if (pure) if (!found1 && (add == target || mul == target)) found1 = (sum1 += target);
+            else if (!found2 && (add == target || mul == target || cat == target)) found2 = (sum2 += target);
             if (found1 && found2) break;
         }
     }
@@ -67,8 +67,6 @@ double test(){
 
 int main() {
     double res = 0;
-    for (int i = 0; i < 1; i++) {
-        res += test();
-    }
-    printf("1000 tests with %d thread(s) took %lfms on average\n", NTHREADS, res);
+    for (int i = 0; i < 1; i++) res += test();
+    printf("1000 tests with %d thread(s) took %lfs on average\n", NTHREADS, res);
 }
