@@ -62,6 +62,7 @@ double test(){
     }
     #endif
     double fin = wallclock();
+    printf("p1: %ld\np2: %ld\n", sum1, sum2);
     return fin - time;
 }
 
