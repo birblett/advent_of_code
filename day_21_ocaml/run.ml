@@ -28,7 +28,7 @@ let expand lstr iters =
                if hf > vf then vf else hf) offsets in
              let i = (List.fold_left (+) 0 cool) in
              Hashtbl.add cache (st, depth) i;
-             i
-  in List.map (fun s -> (int_of_string (String.sub s 0 3)) * (expand_path s (iters + 1) (iters + 1))) lstr;;
+             i in
+  List.map (fun s -> (int_of_string (String.sub s 0 3)) * (expand_path s (iters + 1) (iters + 1))) lstr;;
 
 Printf.printf "p1: %d\np2: %d\n" (List.fold_left (+) 0 (expand (lines "in.txt") 2)) (List.fold_left (+) 0 (expand (lines "in.txt") 25));;
