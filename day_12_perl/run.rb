@@ -13,5 +13,3 @@ puts (board = File.read("in.txt").split.map { |line| line.chars.map(&:ord) }).ea
     }) and (arr[0], arr[1] = arr[0] + segments * area, arr[1] + corners * area)
   } and arr
 }.shift(2)
-
-puts (board = File.read("in.txt").split.map { |line| line.chars.map(&:ord) }).each_with_index.reduce([0, 0, {}]) { |arr, (line, x), registry = {}| line.each_with_index { |c, y, size = line.length, a = 0, e = 0| (b = (((stack = [x + y * size]) ? 0 : 0)..).each { |d| (break d if !(t = stack.pop) or arr[2][t]) || (y, xx, hz, vt, registry[t] = t / size, t % size, [], 0, (arr[2][t] = true)) && [[xx, y + 1], [xx, y - 1], [xx + 1, y], [xx - 1, y]].each { |x1, y1| x1 >= 0 && x1 < size && y1 >= 0 && y1 < size && board[x1][y1] == c ? ((x1 == xx ? hz.push(y1) : vt += (hz.each { |y2| e += 1 if board[x1][y2] != c } and 1)) && ((stack.push(x1 + y1 * size); registry[x1 + y1 * size] = true) unless registry[x1 + y1 * size])) : (a += 1) } && (ed = hz.length + vt) <= 1 ? e += 2 - ed << 1 :(e += 1 if hz.length == 1 and vt == 1) }) and (arr[0], arr[1] = arr[0] + a * b, arr[1] + e * b) } and arr }.shift(2)

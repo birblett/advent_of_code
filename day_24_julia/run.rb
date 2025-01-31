@@ -10,8 +10,7 @@ regs.each { |k, v|
   v[2].empty? ? (k == final ? (bad.push(k) if v[0] != "OR") :
     v[0] != "XOR" || v[1].any? { start[_1] && _1.scan(/\d+/) != k.scan(/\d+/)} ? bad.push(k) : v[1].each { |p|
       regs[p][1].any? { start[_1] } ?  (bad.push(p) if regs[p][0] != "XOR" unless regs[p][1].any? { sregs[_1] }) :
-        (bad.push(p) if regs[p][0] != "OR" unless start[p]) })
-    : (v[1].each { bad.push(_1) if regs[_1][0] != "AND" } if v[0] == "OR")
+        (bad.push(p) if regs[p][0] != "OR" unless start[p]) }) : (v[1].each { bad.push(_1) if regs[_1][0] != "AND" } if v[0] == "OR")
 }
 (is[k].each { |instr, dest|
   next unless ((op1, op, op2) = instr.split(" ")) and start[op1] and start[op2]

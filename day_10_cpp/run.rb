@@ -7,10 +7,10 @@ puts File.open("in.txt") { |file, tscore = 0, paths = 0, len = nil, trailheads =
     if board[idx] == 9
       found[comp] = tscore += 1 unless found[comp]
       paths += 1
-      next
-    end
-    [[y1 - 1, x1], [y1 + 1, x1], [y1, x1 - 1], [y1, x1 + 1]].each { |y2, x2|
-      q.push((y2 << 8) + x2) if board[y2 * len + x2] == board[idx] + 1 unless y2 < 0 or y2 >= len or x2 < 0 or x2 >= len
-    }) while (comp = q.pop)
+    else
+      [[y1 - 1, x1], [y1 + 1, x1], [y1, x1 - 1], [y1, x1 + 1]].each { |y2, x2|
+        q.push((y2 << 8) + x2) if board[y2 * len + x2] == board[idx] + 1 unless y2 < 0 or y2 >= len or x2 < 0 or x2 >= len
+      }
+    end) while (comp = q.pop)
   } && [tscore, paths]
 }

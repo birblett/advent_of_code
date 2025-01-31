@@ -6,5 +6,4 @@ def expand_path(path, start, iter = start, c = iter == start ? "A" : "a")
     }.map { |str| str + ["a"] }.uniq
     iter == 0 ? possible[0].length : possible.map { |str| expand_path(str, start, iter - 1) }.min) }
 end
-
 puts CODES[0].reduce([0, 0]) { |a, code| [a[0] + expand_path(code.chars, 2) * (i = code.scan(/\d+/)[0].to_i), a[1] + expand_path(code.chars, 25) * i] }

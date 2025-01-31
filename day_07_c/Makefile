@@ -1,6 +1,6 @@
 .SILENT:
 ifndef NTHREADS
-NTHREADS=16
+NTHREADS=1
 endif
 make:
 	cc run.c -O3 -fopenmp $(CFLAGS) -DNTHREADS=$(NTHREADS)
