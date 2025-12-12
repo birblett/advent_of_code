@@ -14,4 +14,8 @@ def invalid(range, factors)
   }.reduce(&:+)
 end
 
-p File.open("in.txt") { |f| f.read.split(",").map { _1.split("-") }.sum { |i| (invalid(i, FACTORS) | []).sum } }
+File.open("in.txt") { |f|
+  ranges = f.read.split(",").map { _1.split("-") }
+  p ranges.sum { |i| (invalid(i, FACTORS_NONE) | []).sum }
+  p ranges.sum { |i| (invalid(i, FACTORS) | []).sum }
+}
