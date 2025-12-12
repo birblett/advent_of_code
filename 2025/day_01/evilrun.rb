@@ -1,0 +1,1 @@
+p File.open("in.txt", "r") { |f| f.map { |l| [l[1..].to_i, (l[/L/] ? :- : :+)] }.reduce([0, 0, 50]) { |a, v, i = v[0], h = i.truncate(-2), t = (i - h), b = (a[1] + h / 100), p = (d = a[2]).send(v[1], t)| [a[0] + ((p = p > 99 ? (b += d == 0 ? 0 : 1 and p - 100) : p < 0 ? (b += d == 0 ? 0 : 1 and 100 + p) : (b += p == 0 ? 1 : 0 and p)) == 0 ? 1 : 0), b, p] }[0, 2] }
